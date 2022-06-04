@@ -22,6 +22,14 @@ app.get("/", function (req, res) {
 app.get("/api/:date", function (req, res) {
   try {
     let result;
+    if (req.params.date.length > !0) {
+      result = new Date();
+
+      return res.send({
+        unix: result.getTime(),
+        utc: result.toUTCString(),
+      });
+    }
     if (req.params.date.includes("-")) {
       result = new Date(req.params.date);
     } else {
